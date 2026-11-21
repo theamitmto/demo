@@ -541,8 +541,8 @@
                     <div class="flex items-center gap-3">
                         <span class="w-8 h-8 rounded-xl bg-gradient-to-tr from-emerald-600 to-teal-500 text-white flex items-center justify-center shadow-sm"><i class="fa-solid fa-wallet text-xs"></i></span>
                         <div class="text-left">
-                            <div class="leading-tight">Wallet &amp; Payouts</div>
-                            <div class="text-[10px] font-semibold text-neutral-500 dark:text-neutral-400">Add Money, Withdraw (Min ₹100) &amp; 10% Referrals</div>
+                            <div class="leading-tight">Referral Wallet &amp; Payouts</div>
+                            <div class="text-[10px] font-semibold text-neutral-500 dark:text-neutral-400">10% Referral Earnings &amp; Withdraw (Min ₹100)</div>
                         </div>
                     </div>
                     <span id="menu-wallet-balance-pill" class="px-2.5 py-0.5 rounded-full bg-emerald-600 text-white font-mono text-[10px] font-black">₹0</span>
@@ -3228,6 +3228,18 @@
                             </div>
                             <span id="adm-wallet-summary-pill" class="px-2.5 py-1 rounded-full bg-emerald-500/15 text-emerald-700 dark:text-emerald-300 font-black text-[10px]">0 Add-Money • 0 Withdrawals</span>
                         </div>
+                    <!-- Unified Admin Wallet & Payouts Studio (Master UPI, All Users Referral Wallet Breakdown & Withdrawals) -->
+                    <div id="admin-wallet-payouts-studio" class="p-4 rounded-2xl bg-gradient-to-br from-emerald-500/10 via-white to-teal-500/10 dark:from-emerald-950/40 dark:via-neutral-900 dark:to-teal-950/30 border border-emerald-500/40 space-y-4">
+                        <div class="flex flex-wrap items-center justify-between gap-2 pb-2 border-b border-neutral-200/80 dark:border-neutral-800">
+                            <div>
+                                <span class="px-2 py-0.5 rounded-full bg-emerald-600 text-white text-[9px] font-black uppercase tracking-wider">Referral Wallet &amp; Withdrawals</span>
+                                <h5 class="font-black text-sm text-neutral-900 dark:text-white mt-1 flex items-center gap-1.5">
+                                    <i class="fa-solid fa-wallet text-emerald-600"></i> Referral Wallet &amp; Payouts Management Studio
+                                </h5>
+                                <p class="text-[10px] text-neutral-500">Configure Master UPI ID, Min Withdrawal Limit, inspect every user's 10% Referral Wallet balance, and approve/reject/refund Withdraw requests.</p>
+                            </div>
+                            <span id="adm-wallet-summary-pill" class="px-2.5 py-1 rounded-full bg-emerald-500/15 text-emerald-700 dark:text-emerald-300 font-black text-[10px]">0 Withdrawals Pending</span>
+                        </div>
 
                         <!-- Single Master UPI Payment & Withdrawal Policy Settings -->
                         <div class="p-3 rounded-xl bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 grid grid-cols-1 sm:grid-cols-12 gap-2 items-end">
@@ -3278,11 +3290,11 @@
                             </div>
                         </div>
 
-                        <!-- All Users Wallet Balance & Breakdown Inspector -->
+                        <!-- All Users Referral Wallet Balance & Breakdown Inspector -->
                         <div class="p-3 rounded-xl bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 space-y-2">
                             <div class="flex flex-wrap items-center justify-between gap-2">
                                 <div>
-                                    <span class="font-black text-neutral-900 dark:text-white"><i class="fa-solid fa-users-viewfinder text-emerald-600 mr-1"></i> All Users Wallet Balance &amp; Breakdown</span>
+                                    <span class="font-black text-neutral-900 dark:text-white"><i class="fa-solid fa-users-viewfinder text-emerald-600 mr-1"></i> All Users Referral Wallet Balance &amp; Breakdown</span>
                                     <span id="adm-wallet-users-total-pill" class="ml-1.5 px-2 py-0.5 rounded-full bg-emerald-500/15 text-emerald-700 dark:text-emerald-300 font-black text-[9px]">Total Pool: ₹0</span>
                                 </div>
                                 <input type="text" id="adm-wallet-users-search" oninput="renderAdminWalletStudio()" placeholder="Search Name / Mobile / NEOKHATA ID..." class="w-48 p-1.5 rounded-lg bg-neutral-100 dark:bg-neutral-800 border text-[10px] font-bold">
@@ -3290,25 +3302,13 @@
                             <div id="admin-wallet-users-breakdown-list" class="space-y-2 max-h-72 overflow-y-auto pr-1"></div>
                         </div>
 
-                        <!-- Side-by-Side Withdraw Requests & Add-Money Requests (With Full Edit / Reverse / Re-Approve) -->
-                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-3">
-                            <!-- User Withdraw Requests Queue -->
-                            <div class="p-3 rounded-xl bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 space-y-2">
-                                <div class="flex items-center justify-between gap-2">
-                                    <span class="font-black text-neutral-900 dark:text-white"><i class="fa-solid fa-money-bill-transfer text-rose-500 mr-1"></i> User Withdraw Requests (Min ₹100)</span>
-                                    <input type="text" id="adm-wallet-wd-search" oninput="renderAdminWalletStudio()" placeholder="Search ID/Name/UPI..." class="w-32 p-1 rounded-lg bg-neutral-100 dark:bg-neutral-800 border text-[10px] font-bold">
-                                </div>
-                                <div id="admin-wallet-withdrawals-list" class="space-y-2 max-h-80 overflow-y-auto pr-1"></div>
+                        <!-- User Withdraw Requests Queue (With Full Edit / Reverse / Re-Approve) -->
+                        <div class="p-3 rounded-xl bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 space-y-2">
+                            <div class="flex items-center justify-between gap-2">
+                                <span class="font-black text-neutral-900 dark:text-white"><i class="fa-solid fa-money-bill-transfer text-rose-500 mr-1"></i> User Withdraw Requests (Min ₹100)</span>
+                                <input type="text" id="adm-wallet-wd-search" oninput="renderAdminWalletStudio()" placeholder="Search ID/Name/UPI..." class="w-44 p-1.5 rounded-lg bg-neutral-100 dark:bg-neutral-800 border text-[10px] font-bold">
                             </div>
-
-                            <!-- User Add Money Requests Queue -->
-                            <div class="p-3 rounded-xl bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 space-y-2">
-                                <div class="flex items-center justify-between gap-2">
-                                    <span class="font-black text-neutral-900 dark:text-white"><i class="fa-solid fa-circle-plus text-primary-600 mr-1"></i> Wallet Add-Money Requests</span>
-                                    <input type="text" id="adm-wallet-add-search" oninput="renderAdminWalletStudio()" placeholder="Search ID/UTR..." class="w-32 p-1 rounded-lg bg-neutral-100 dark:bg-neutral-800 border text-[10px] font-bold">
-                                </div>
-                                <div id="admin-wallet-addmoney-list" class="space-y-2 max-h-80 overflow-y-auto pr-1"></div>
-                            </div>
+                            <div id="admin-wallet-withdrawals-list" class="space-y-2 max-h-80 overflow-y-auto pr-1"></div>
                         </div>
                     </div>
 
@@ -5129,8 +5129,8 @@
                         <i class="fa-solid fa-wallet"></i>
                     </span>
                     <div>
-                        <h4 class="text-base font-black text-neutral-900 dark:text-white tracking-tight">NeoKhata Wallet &amp; Payouts</h4>
-                        <p id="wallet-modal-user-meta" class="text-[10.5px] font-bold text-emerald-600 dark:text-emerald-400">Add Money, Withdraw (Min ₹100) &amp; 10% Referrals</p>
+                        <h4 class="text-base font-black text-neutral-900 dark:text-white tracking-tight">Referral Wallet &amp; Payouts</h4>
+                        <p id="wallet-modal-user-meta" class="text-[10.5px] font-bold text-emerald-600 dark:text-emerald-400">10% Referral Earnings &amp; Withdraw (Min ₹100)</p>
                     </div>
                 </div>
                 <button type="button" onclick="closeUserWalletModal()" class="w-8 h-8 rounded-full bg-neutral-100 hover:bg-neutral-200 dark:bg-neutral-800 text-neutral-500 text-xs flex items-center justify-center transition">
@@ -5138,11 +5138,11 @@
                 </button>
             </div>
 
-            <!-- Wallet Balance, Approved Added Money & 10% Referral Earnings Breakdown Hero -->
+            <!-- Referral Wallet Balance Hero -->
             <div class="p-4 rounded-2xl bg-gradient-to-br from-emerald-600 via-teal-600 to-primary-700 text-white shadow-lg space-y-3">
                 <div class="flex items-center justify-between gap-2">
                     <div>
-                        <span class="text-[10px] font-black uppercase tracking-wider text-emerald-100 block">Total Available Wallet Balance</span>
+                        <span class="text-[10px] font-black uppercase tracking-wider text-emerald-100 block">Available Referral Wallet Balance</span>
                         <div id="wallet-modal-balance-display" class="text-2xl sm:text-3xl font-black tracking-tight tabular-nums mt-0.5">₹0</div>
                     </div>
                     <button type="button" onclick="switchUserWalletTab('withdraw')" class="px-3.5 py-2 rounded-xl bg-white text-emerald-700 hover:bg-emerald-50 font-black text-[11px] shadow-sm active:scale-95">
@@ -5150,73 +5150,31 @@
                     </button>
                 </div>
 
-                <div class="grid grid-cols-2 gap-2.5 pt-2 border-t border-white/20">
-                    <div class="p-2.5 rounded-xl bg-white/15 border border-white/20">
-                        <span class="text-[9.5px] font-black uppercase tracking-wider text-sky-200 block"><i class="fa-solid fa-circle-plus mr-1"></i> Added Money (Approved)</span>
-                        <strong id="wallet-modal-added-money-total" class="text-base sm:text-lg font-black tabular-nums block mt-0.5">₹0</strong>
-                        <span class="text-[9px] text-white/80">Admin Approved Top-Ups</span>
+                <div class="p-2.5 rounded-xl bg-white/15 border border-white/20 flex items-center justify-between gap-2">
+                    <div>
+                        <span class="text-[9.5px] font-black uppercase tracking-wider text-amber-200 block"><i class="fa-solid fa-gift mr-1"></i> Total Referral Earnings (10%)</span>
+                        <span class="text-[9px] text-white/85">Earned from approved plans of your referred users</span>
                     </div>
-                    <div class="p-2.5 rounded-xl bg-white/15 border border-white/20">
-                        <span class="text-[9.5px] font-black uppercase tracking-wider text-amber-200 block"><i class="fa-solid fa-gift mr-1"></i> Referral Earnings (10%)</span>
-                        <strong id="wallet-modal-referral-earned" class="text-base sm:text-lg font-black tabular-nums block mt-0.5">₹0</strong>
-                        <span class="text-[9px] text-white/80">Auto-Added to Total Balance</span>
-                    </div>
+                    <strong id="wallet-modal-referral-earned" class="text-base sm:text-lg font-black tabular-nums">₹0</strong>
                 </div>
             </div>
 
-            <!-- Sub-Tabs: Add Money | Withdraw | Ledger & History -->
-            <div class="grid grid-cols-3 gap-1.5 p-1 rounded-2xl bg-neutral-100 dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700">
-                <button type="button" id="wallet-tab-btn-add" onclick="switchUserWalletTab('add')" class="py-2 px-2.5 rounded-xl font-black text-[11px] bg-white dark:bg-neutral-900 text-emerald-600 shadow-2xs transition">+ Add Money</button>
-                <button type="button" id="wallet-tab-btn-withdraw" onclick="switchUserWalletTab('withdraw')" class="py-2 px-2.5 rounded-xl font-bold text-[11px] text-neutral-500 transition">Withdraw (Min ₹100)</button>
-                <button type="button" id="wallet-tab-btn-history" onclick="switchUserWalletTab('history')" class="py-2 px-2.5 rounded-xl font-bold text-[11px] text-neutral-500 transition">History &amp; Ledger</button>
+            <!-- Sub-Tabs: Withdraw | Ledger & History -->
+            <div class="grid grid-cols-2 gap-1.5 p-1 rounded-2xl bg-neutral-100 dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700">
+                <button type="button" id="wallet-tab-btn-withdraw" onclick="switchUserWalletTab('withdraw')" class="py-2 px-2.5 rounded-xl font-black text-[11px] bg-white dark:bg-neutral-900 text-emerald-600 shadow-2xs transition">Withdraw (Min ₹100)</button>
+                <button type="button" id="wallet-tab-btn-history" onclick="switchUserWalletTab('history')" class="py-2 px-2.5 rounded-xl font-bold text-[11px] text-neutral-500 transition">Referral Ledger &amp; History</button>
             </div>
 
-            <!-- TAB 1: ADD MONEY -->
-            <div id="wallet-panel-add" class="space-y-3">
-                <div class="p-3.5 rounded-2xl bg-neutral-100/90 dark:bg-neutral-800/80 border border-neutral-200 dark:border-neutral-700 flex flex-col sm:flex-row items-center gap-3">
-                    <img id="wallet-add-master-qr" src="" alt="Master UPI QR" class="w-28 h-28 rounded-xl bg-white p-1.5 border border-neutral-300 flex-shrink-0">
-                    <div class="flex-1 min-w-0 space-y-1.5 text-left">
-                        <span class="px-2 py-0.5 rounded-full bg-emerald-500/15 text-emerald-700 dark:text-emerald-300 font-black text-[9px] uppercase">Official Master UPI</span>
-                        <div class="font-mono text-xs font-black text-neutral-900 dark:text-white select-all" id="wallet-add-master-upi-text">6393954985@upi</div>
-                        <div class="text-[10.5px] text-neutral-500" id="wallet-add-master-payee-text">Payee: NeoKhata Official</div>
-                        <button type="button" onclick="copyMasterWalletUpi()" class="px-3 py-1.5 rounded-xl bg-primary-600 hover:bg-primary-700 text-white font-black text-[10px] inline-flex items-center gap-1.5">
-                            <i class="fa-regular fa-copy"></i> Copy UPI ID
-                        </button>
-                    </div>
-                </div>
-
-                <form onsubmit="submitUserWalletAddMoneyRequest(event)" class="p-3.5 rounded-2xl bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 space-y-3">
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-                        <div>
-                            <label class="block text-[10px] font-black uppercase text-neutral-500 mb-1">Amount to Add (₹) *</label>
-                            <input type="number" id="wallet-add-amount-input" min="10" required placeholder="e.g. 500" oninput="refreshWalletAddMoneyQr()" class="w-full p-2.5 rounded-xl bg-neutral-100 dark:bg-neutral-800 border font-black">
-                        </div>
-                        <div>
-                            <label class="block text-[10px] font-black uppercase text-neutral-500 mb-1">12-Digit UTR / Payment Ref *</label>
-                            <input type="text" id="wallet-add-utr-input" minlength="12" maxlength="12" inputmode="numeric" required oninput="this.value=this.value.replace(/\D/g,'').slice(0,12)" placeholder="12-digit UTR number" class="w-full p-2.5 rounded-xl bg-neutral-100 dark:bg-neutral-800 border font-mono font-black tracking-wider">
-                        </div>
-                    </div>
-                    <button type="submit" class="w-full py-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-black text-xs uppercase tracking-wider shadow-md">
-                        Submit Add-Money Request (Pending Admin Approval)
-                    </button>
-                </form>
-
-                <div class="space-y-1.5">
-                    <div class="text-[10px] font-black uppercase tracking-wider text-neutral-400">Your Add-Money Requests (Pending / Done / Rejected)</div>
-                    <div id="wallet-user-addmoney-history" class="space-y-1.5 max-h-44 overflow-y-auto pr-1"></div>
-                </div>
-            </div>
-
-            <!-- TAB 2: WITHDRAW (MIN ₹100 + MANDATORY PAYOUT UPI ID + INSTANT WALLET DEDUCTION) -->
-            <div id="wallet-panel-withdraw" class="hidden space-y-3">
+            <!-- TAB 1: WITHDRAW (MIN ₹100 + MANDATORY PAYOUT UPI ID + INSTANT WALLET DEDUCTION) -->
+            <div id="wallet-panel-withdraw" class="space-y-3">
                 <form onsubmit="submitUserWalletWithdrawRequest(event)" class="p-3.5 rounded-2xl bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 space-y-3">
                     <div class="p-2.5 rounded-xl bg-amber-500/10 border border-amber-500/25 text-[10.5px] font-semibold text-amber-800 dark:text-amber-200">
-                        <i class="fa-solid fa-circle-info mr-1"></i> Minimum withdrawal is <strong>₹100</strong>. Requested amount is deducted immediately from your wallet and restored automatically if rejected.
+                        <i class="fa-solid fa-circle-info mr-1"></i> Withdrawals are paid strictly from your <strong>10% Referral Earnings</strong> (minimum <strong>₹100</strong>). Amount deducts immediately on request and restores automatically if rejected.
                     </div>
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                         <div>
                             <label class="block text-[10px] font-black uppercase text-neutral-500 mb-1">Withdraw Amount (Min ₹100) *</label>
-                            <input type="number" id="wallet-wd-amount-input" min="100" required placeholder="Min ₹100" class="w-full p-2.5 rounded-xl bg-neutral-100 dark:bg-neutral-800 border font-black">
+                            <input type="number" id="wallet-wd-amount-input" min="100" step="0.01" required placeholder="Min ₹100" class="w-full p-2.5 rounded-xl bg-neutral-100 dark:bg-neutral-800 border font-black">
                         </div>
                         <div>
                             <label class="block text-[10px] font-black uppercase text-neutral-500 mb-1">Your Payout UPI ID (Mandatory) *</label>
@@ -5230,13 +5188,13 @@
 
                 <div class="space-y-1.5">
                     <div class="text-[10px] font-black uppercase tracking-wider text-neutral-400">Your Withdraw Requests (Pending / Approved / Rejected)</div>
-                    <div id="wallet-user-withdraw-history" class="space-y-1.5 max-h-44 overflow-y-auto pr-1"></div>
+                    <div id="wallet-user-withdraw-history" class="space-y-1.5 max-h-48 overflow-y-auto pr-1"></div>
                 </div>
             </div>
 
-            <!-- TAB 3: WALLET TRANSACTION LEDGER -->
+            <!-- TAB 2: WALLET TRANSACTION LEDGER -->
             <div id="wallet-panel-history" class="hidden space-y-2">
-                <div class="text-[10px] font-black uppercase tracking-wider text-neutral-400">Complete Wallet Ledger (10% Referrals, Add Money, Plan Purchases &amp; Withdrawals)</div>
+                <div class="text-[10px] font-black uppercase tracking-wider text-neutral-400">Complete Referral Wallet Ledger (10% Commissions, Plan Purchases &amp; Withdrawals)</div>
                 <div id="wallet-user-ledger-list" class="space-y-1.5 max-h-64 overflow-y-auto pr-1"></div>
             </div>
         </div>
@@ -16111,11 +16069,11 @@ ${JSON.stringify(liveSnapshot)}`;
             if (wStatBox) {
                 if (wBal >= finalAmt) {
                     wStatBox.className = 'p-2.5 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-[11px] font-bold text-emerald-800 dark:text-emerald-200';
-                    wStatBox.textContent = `✓ Sufficient Wallet Balance (₹${wBal}). ₹${finalAmt} will be deducted and "${selectedCheckoutPlanName}" will activate immediately!`;
+                    wStatBox.textContent = `✓ Sufficient Referral Wallet Balance (₹${wBal}). ₹${finalAmt} will be deducted and "${selectedCheckoutPlanName}" will activate immediately!`;
                     if (wPayBtn) { wPayBtn.disabled = false; wPayBtn.classList.remove('opacity-50', 'cursor-not-allowed'); }
                 } else {
                     wStatBox.className = 'p-2.5 rounded-xl bg-rose-500/10 border border-rose-500/30 text-[11px] font-bold text-rose-700 dark:text-rose-200';
-                    wStatBox.textContent = `⚠️ Insufficient Wallet Balance (Available: ₹${wBal}, Required: ₹${finalAmt}). Please add ₹${finalAmt - wBal} in Wallet or Pay via UPI.`;
+                    wStatBox.textContent = `⚠️ Insufficient Referral Wallet Balance (Available: ₹${wBal}, Required: ₹${finalAmt}). Refer friends for 10% commission or Pay via UPI.`;
                     if (wPayBtn) { wPayBtn.disabled = true; wPayBtn.classList.add('opacity-50', 'cursor-not-allowed'); }
                 }
             }
@@ -16336,6 +16294,51 @@ ${JSON.stringify(liveSnapshot)}`;
             renderAdminSubscriptionStudio();
             saveAllAdminChangesLive();
             showToast(`Coupon "${code}" is now ${c.active ? 'ACTIVE' : 'INACTIVE'}`);
+        }
+
+        function toggleAdminCouponLimitInput() {
+            const mode = document.getElementById('adm-coupon-limit-mode')?.value || 'unlimited';
+            const maxInp = document.getElementById('adm-coupon-max-users');
+            if (!maxInp) return;
+            const isLimited = mode === 'limited';
+            maxInp.disabled = !isLimited;
+            maxInp.classList.toggle('opacity-50', !isLimited);
+        }
+
+        function addAdminSubscriptionCoupon() {
+            const sc = ensureSubscriptionConfig();
+            const code = (document.getElementById('adm-coupon-code')?.value || '').trim().toUpperCase();
+            const discountPct = Math.min(100, Math.max(1, parseInt(document.getElementById('adm-coupon-discount')?.value, 10) || 0));
+            const limitMode = document.getElementById('adm-coupon-limit-mode')?.value || 'unlimited';
+            const maxUsers = Math.max(1, parseInt(document.getElementById('adm-coupon-max-users')?.value, 10) || 50);
+            const validFrom = document.getElementById('adm-coupon-valid-from')?.value || '';
+            const validUntil = document.getElementById('adm-coupon-valid-until')?.value || '';
+
+            if (!code || discountPct <= 0) {
+                showToast('Enter a valid coupon code and discount %', 'error');
+                return;
+            }
+            const existingIdx = sc.coupons.findIndex(c => c.code === code);
+            const newCoupon = {
+                code,
+                discountPct,
+                isUnlimited: limitMode !== 'limited',
+                maxUsageLimit: limitMode === 'limited' ? maxUsers : 0,
+                validFrom,
+                validUntil,
+                active: true,
+                usedCount: existingIdx >= 0 ? (sc.coupons[existingIdx].usedCount || 0) : 0,
+                usedByUsers: existingIdx >= 0 ? (sc.coupons[existingIdx].usedByUsers || []) : []
+            };
+            if (existingIdx >= 0) sc.coupons[existingIdx] = newCoupon;
+            else sc.coupons.unshift(newCoupon);
+
+            document.getElementById('adm-coupon-code').value = '';
+            document.getElementById('adm-coupon-discount').value = '';
+            safeLocalStorageSet('khataflow_admin_config', JSON.stringify(adminConfig));
+            renderAdminSubscriptionStudio();
+            saveAllAdminChangesLive();
+            showToast(`Coupon "${code}" (${discountPct}% OFF) saved!`);
         }
 
         function deleteAdminSubscriptionCoupon(code) {
@@ -17048,11 +17051,9 @@ ${JSON.stringify(liveSnapshot)}`;
             if (!adminConfig.walletSystem || typeof adminConfig.walletSystem !== 'object') {
                 adminConfig.walletSystem = {
                     balances: {},
-                    addedTotals: {},
                     referralTotals: {},
                     minWithdrawAmount: 100,
                     paymentInstructions: 'Pay via UPI & submit 12-digit UTR',
-                    addMoneyRequests: [],
                     withdrawRequests: [],
                     ledger: [],
                     creditedReferralIds: {},
@@ -17061,11 +17062,9 @@ ${JSON.stringify(liveSnapshot)}`;
             }
             const ws = adminConfig.walletSystem;
             if (!ws.balances || typeof ws.balances !== 'object') ws.balances = {};
-            if (!ws.addedTotals || typeof ws.addedTotals !== 'object') ws.addedTotals = {};
             if (!ws.referralTotals || typeof ws.referralTotals !== 'object') ws.referralTotals = {};
             ws.minWithdrawAmount = Math.max(1, Number(ws.minWithdrawAmount) || 100);
             if (!ws.paymentInstructions) ws.paymentInstructions = 'Pay via UPI & submit 12-digit UTR';
-            ws.addMoneyRequests = normalizeCollectionToArray(ws.addMoneyRequests);
             ws.withdrawRequests = normalizeCollectionToArray(ws.withdrawRequests);
             ws.ledger = normalizeCollectionToArray(ws.ledger);
             if (!ws.creditedReferralIds || typeof ws.creditedReferralIds !== 'object') ws.creditedReferralIds = {};
@@ -17078,52 +17077,20 @@ ${JSON.stringify(liveSnapshot)}`;
             const ap = ensureAffiliateProgramConfig();
             const normKey = String(userKey || '').trim().toLowerCase();
             if (!normKey || normKey === 'master_admin') {
-                return { availableBalance: 0, addedMoneyTotal: 0, referralEarningsTotal: 0 };
+                return { availableBalance: 0, referralEarningsTotal: 0 };
             }
 
             let changed = false;
             const myCode = getOrCreateUserSixDigitReferralCode(normKey);
 
-            // 1. Deduplicate Add-Money requests by ID/UTR & compute exact sum of Admin-approved ("done") top-ups
-            const seenAddIds = new Set();
-            let totalAddedRs = 0;
-            ws.addMoneyRequests.forEach(r => {
-                if (!r || String(r.userKey || '').toLowerCase() !== normKey) return;
-                const dedupId = String(r.id || r.utr || '').trim();
-                if (!dedupId || seenAddIds.has(dedupId)) return;
-                seenAddIds.add(dedupId);
-                if (r.status === 'done') {
-                    const exactAmt = roundWalletAmount(r.amount);
-                    totalAddedRs = roundWalletAmount(totalAddedRs + exactAmt);
-                    const addEvKey = `addmoney_${dedupId}`;
-                    if (!r.credited || !ws.creditedEventIds[addEvKey]) {
-                        r.credited = true;
-                        ws.creditedEventIds[addEvKey] = true;
-                        changed = true;
-                    }
-                    // Ensure single ledger row exists for this approved top-up without duplicating
-                    const hasLedgerRow = ws.ledger.some(l =>
-                        String(l.userKey || '').toLowerCase() === normKey &&
-                        (l.refId === addEvKey || l.refId === dedupId)
-                    );
-                    if (!hasLedgerRow && exactAmt > 0) {
-                        appendWalletLedgerEntry(normKey, {
-                            type: 'credit',
-                            amount: exactAmt,
-                            title: `Wallet Add Money (+${formatWalletRs(exactAmt)}) • UTR: ${r.utr || ''}`,
-                            refId: addEvKey
-                        });
-                        changed = true;
-                    }
-                }
-            });
-
-            // 2. Compute exact 10% Referral Earnings from completed ("done") referrals (strictly idempotent)
+            // 1. Compute exact 10% Referral Earnings from completed ("done") referrals (strictly idempotent)
             const seenRefIds = new Set();
-            let totalReferralRs = 0;
+            let totalReferralEarnings10Pct = 0;
             ap.referrals.forEach(r => {
                 if (!r) return;
-                const matchesReferrer = (String(r.referrerUserKey || '').toLowerCase() === normKey) || (myCode && String(r.referralCode) === myCode);
+                const refOwnerKey = String(r.referrerUserKey || '').trim().toLowerCase();
+                const refCodeStr = String(r.referralCode || '').trim();
+                const matchesReferrer = (refOwnerKey && refOwnerKey === normKey) || (myCode && refCodeStr === myCode);
                 if (!matchesReferrer || r.status !== 'done' || !r.counted) return;
                 const refDedupId = String(r.id || r.referredUserKey || '').trim();
                 if (!refDedupId || seenRefIds.has(refDedupId)) return;
@@ -17135,7 +17102,7 @@ ${JSON.stringify(liveSnapshot)}`;
                     Number(r.commissionEarned) > 0 ? Number(r.commissionEarned) : (paidAmt * commRate)
                 );
                 if (exactCommRs > 0) {
-                    totalReferralRs = roundWalletAmount(totalReferralRs + exactCommRs);
+                    totalReferralEarnings10Pct = roundWalletAmount(totalReferralEarnings10Pct + exactCommRs);
                     const commKey = `refcomm_${refDedupId}`;
                     if (!ws.creditedReferralIds[commKey] || !ws.creditedEventIds[commKey]) {
                         ws.creditedReferralIds[commKey] = true;
@@ -17158,8 +17125,7 @@ ${JSON.stringify(liveSnapshot)}`;
                 }
             });
 
-            // 3. Single Source of Truth for Total Available Wallet Balance:
-            //    Added Money (Approved) + Referral Earnings (10%) + Direct Admin Credits - Plan Purchases - Direct Admin Debits - Active/Paid Withdrawals
+            // 2. Include any direct Admin Wallet Credits/Debits and Wallet Plan Purchases from ledger
             let directAdminCredits = 0;
             let directAdminDebits = 0;
             let planPurchaseDebits = 0;
@@ -17171,65 +17137,71 @@ ${JSON.stringify(liveSnapshot)}`;
                 seenLedgerIds.add(lid);
                 const amt = roundWalletAmount(l.amount);
                 const titleStr = String(l.title || '');
-                if (l.type === 'credit' && (/^admin credit/i.test(titleStr) || String(l.refId || '').startsWith('admadj_'))) {
+                if (l.type === 'credit' && /^admin credit/i.test(titleStr)) {
                     directAdminCredits = roundWalletAmount(directAdminCredits + amt);
-                } else if (l.type === 'debit' && (/^admin debit/i.test(titleStr) || String(l.refId || '').startsWith('admadj_'))) {
+                } else if (l.type === 'debit' && /^admin debit/i.test(titleStr)) {
                     directAdminDebits = roundWalletAmount(directAdminDebits + amt);
-                } else if (l.type === 'debit' && (/^pro plan activated/i.test(titleStr) || String(l.refId || '').startsWith('plan_wal_'))) {
+                } else if (l.type === 'debit' && /^pro plan activated/i.test(titleStr)) {
                     planPurchaseDebits = roundWalletAmount(planPurchaseDebits + amt);
                 }
             });
 
-            // Active withdrawals (pending or paid/approved) reduce available balance; rejected withdrawals are restored (0 net deduction)
+            // 3. Calculate deducted/approved withdrawals and rejected withdrawal refunds cleanly
             const seenWdIds = new Set();
-            let activeWithdrawalsTotal = 0;
+            let deductedOrApprovedWithdrawals = 0;
+            let rejectedWithdrawalRefunds = 0;
             ws.withdrawRequests.forEach(w => {
                 if (!w || String(w.userKey || '').toLowerCase() !== normKey) return;
                 const wid = String(w.id || `${w.createdAt}_${w.amount}`).trim();
                 if (seenWdIds.has(wid)) return;
                 seenWdIds.add(wid);
+                const wAmt = roundWalletAmount(w.amount);
                 if (w.status === 'pending' || w.status === 'paid' || w.status === 'approved') {
-                    activeWithdrawalsTotal = roundWalletAmount(activeWithdrawalsTotal + roundWalletAmount(w.amount));
+                    deductedOrApprovedWithdrawals = roundWalletAmount(deductedOrApprovedWithdrawals + wAmt);
+                } else if (w.status === 'rejected') {
+                    // Track rejected withdrawal pair (initial deduction + refund cancel out to 0)
+                    deductedOrApprovedWithdrawals = roundWalletAmount(deductedOrApprovedWithdrawals + wAmt);
+                    rejectedWithdrawalRefunds = roundWalletAmount(rejectedWithdrawalRefunds + wAmt);
                 }
             });
 
-            const exactAvailableBalance = Math.max(
+            const availableReferralBalance = Math.max(
                 0,
-                roundWalletAmount(
-                    totalAddedRs +
-                    totalReferralRs +
-                    directAdminCredits -
-                    directAdminDebits -
-                    planPurchaseDebits -
-                    activeWithdrawalsTotal
-                )
+                Math.round(
+                    ((totalReferralEarnings10Pct +
+                      directAdminCredits -
+                      directAdminDebits -
+                      planPurchaseDebits -
+                      deductedOrApprovedWithdrawals +
+                      rejectedWithdrawalRefunds) +
+                      Number.EPSILON) *
+                        100
+                ) / 100
             );
 
             const prevStoredBal = roundWalletAmount(ws.balances[normKey]);
-            const prevStoredAdded = roundWalletAmount(ws.addedTotals[normKey]);
             const prevStoredRef = roundWalletAmount(ws.referralTotals[normKey]);
 
             if (
-                prevStoredBal !== exactAvailableBalance ||
-                prevStoredAdded !== totalAddedRs ||
-                prevStoredRef !== totalReferralRs
+                prevStoredBal !== availableReferralBalance ||
+                prevStoredRef !== totalReferralEarnings10Pct
             ) {
-                ws.balances[normKey] = exactAvailableBalance;
-                ws.addedTotals[normKey] = totalAddedRs;
-                ws.referralTotals[normKey] = totalReferralRs;
+                ws.balances[normKey] = availableReferralBalance;
+                ws.referralTotals[normKey] = totalReferralEarnings10Pct;
                 changed = true;
             }
 
             if (changed) {
                 safeLocalStorageSet('khataflow_admin_config', JSON.stringify(adminConfig));
-                if (typeof window.publishAdminBroadcastToCloud === 'function') {
-                    window.publishAdminBroadcastToCloud({ adminConfig, sponsoredAds: SPONSORED_ADS_LIST }).catch(() => {});
+                if (typeof appState !== 'undefined' && normKey === String(getCurrentUserSubKey() || '').trim().toLowerCase()) {
+                    appState.availableReferralBalance = availableReferralBalance;
+                    appState.totalReferralEarnings10Pct = totalReferralEarnings10Pct;
+                    safeLocalStorageSet('khataflow_state_v3', JSON.stringify(appState));
                 }
             }
             return {
-                availableBalance: exactAvailableBalance,
-                addedMoneyTotal: totalAddedRs,
-                referralEarningsTotal: totalReferralRs
+                availableBalance: availableReferralBalance,
+                referralEarningsTotal: totalReferralEarnings10Pct
             };
         }
 
@@ -17240,55 +17212,27 @@ ${JSON.stringify(liveSnapshot)}`;
         }
 
         function updateMenuWalletBalanceBadge() {
-            const { addedMoneyTotal, referralEarningsTotal } = reconcileUserWalletState();
-            const safeTotal = getAvailableWalletBalance();
+            const { availableBalance, referralEarningsTotal } = reconcileUserWalletState();
             const pill = document.getElementById('menu-wallet-balance-pill');
-            if (pill) pill.textContent = formatWalletRs(safeTotal);
+            if (pill) pill.textContent = formatWalletRs(availableBalance);
             const disp = document.getElementById('wallet-modal-balance-display');
-            if (disp) disp.textContent = formatWalletRs(safeTotal);
-            const addedDisp = document.getElementById('wallet-modal-added-money-total');
-            if (addedDisp) addedDisp.textContent = formatWalletRs(addedMoneyTotal);
+            if (disp) disp.textContent = formatWalletRs(availableBalance);
             const refDisp = document.getElementById('wallet-modal-referral-earned');
             if (refDisp) refDisp.textContent = formatWalletRs(referralEarningsTotal);
         }
 
-        // Single authoritative wallet balance reader used across Wallet Card, Withdraw & Pay via Wallet
-        function getAvailableWalletBalance(userOrKey = getCurrentUserSubKey()) {
-            const rawKey = typeof userOrKey === 'object' && userOrKey !== null
-                ? (() => {
-                    const ph = extractCleanPhone(userOrKey.phone || '');
-                    if (ph.length === 10) return `phone_${ph}`;
-                    return (userOrKey.email || userOrKey.uid || userOrKey.userKey || '').trim().toLowerCase();
-                })()
-                : String(userOrKey || '').trim().toLowerCase();
-            const normKey = rawKey || getCurrentUserSubKey();
-            if (!normKey || normKey === 'master_admin') return 0;
-
-            const ws = ensureWalletSystemConfig();
-            const snap = reconcileUserWalletState(normKey);
-            const computed = roundWalletAmount(snap.availableBalance);
-            if (computed > 0) return computed;
-
-            // Only fallback to gross sum if there have been zero debits/withdrawals yet
-            const hasAnyDeduction =
-                ws.withdrawRequests.some(w => w && String(w.userKey || '').toLowerCase() === normKey && (w.status === 'pending' || w.status === 'paid' || w.status === 'approved')) ||
-                ws.ledger.some(l => l && String(l.userKey || '').toLowerCase() === normKey && l.type === 'debit');
-            if (!hasAnyDeduction) {
-                const sumParts = roundWalletAmount(snap.addedMoneyTotal + snap.referralEarningsTotal);
-                if (sumParts > 0) return sumParts;
-            }
-            return computed;
-        }
-
         function appendWalletLedgerEntry(userKey, { type = 'credit', amount = 0, title = '', refId = '' } = {}) {
             const ws = ensureWalletSystemConfig();
-            const normKey = String(userKey || getCurrentUserSubKey() || '').trim().toLowerCase();
+            const normKey = String(userKey || '').trim().toLowerCase();
             const cleanAmt = roundWalletAmount(amount);
             if (!normKey || cleanAmt <= 0) return;
+            if (refId && ws.ledger.some(l => String(l.userKey || '').toLowerCase() === normKey && l.refId === refId)) {
+                return;
+            }
             ws.ledger.unshift({
                 id: `wled_${Date.now()}_${Math.random().toString(36).slice(2, 5)}`,
                 userKey: normKey,
-                type: type === 'debit' ? 'debit' : 'credit',
+                type,
                 amount: cleanAmt,
                 title: String(title || 'Wallet Transaction'),
                 refId: String(refId || ''),
@@ -17339,11 +17283,10 @@ ${JSON.stringify(liveSnapshot)}`;
             const baseAmt = Math.max(1, roundWalletAmount(selectedCheckoutAmount || 199));
             const discountAmt = roundWalletAmount((baseAmt * validDiscountPct) / 100);
             const finalAmt = Math.max(1, roundWalletAmount(baseAmt - discountAmt));
-            const currentBal = getAvailableWalletBalance(userKey);
+            const currentBal = getUserWalletBalance(userKey);
 
             if (currentBal < finalAmt) {
-                refreshSubscriptionCheckoutQr();
-                showToast(`Insufficient wallet balance (Available: ${formatWalletRs(currentBal)}, Required: ${formatWalletRs(finalAmt)})!`, 'error');
+                showToast(`Insufficient Referral Wallet Balance (${formatWalletRs(currentBal)} available, ${formatWalletRs(finalAmt)} needed)!`, 'error');
                 return;
             }
 
@@ -17358,8 +17301,15 @@ ${JSON.stringify(liveSnapshot)}`;
                 refId: purchaseEventId
             });
 
+            sc.userOverrides[userKey] = {
+                ...(sc.userOverrides[userKey] || {}),
+                planName: selectedCheckoutPlanName,
+                assignedPlanId: selectedCheckoutPlanId,
+                expiresAt: new Date(Date.now() + validDays * 86400000).toISOString()
+            };
+
             if (validCouponCode) {
-                const couponObj = (sc.coupons || []).find(c => (c.code || '').toUpperCase() === validCouponCode.toUpperCase());
+                const couponObj = (sc.coupons || []).find(c => (c.code || '').toUpperCase() === validCouponCode);
                 if (couponObj) {
                     if (!Array.isArray(couponObj.usedByUsers)) couponObj.usedByUsers = [];
                     couponObj.usedCount = (Number(couponObj.usedCount) || 0) + 1;
@@ -17369,18 +17319,11 @@ ${JSON.stringify(liveSnapshot)}`;
                         userName: getPrimaryUserName(),
                         planName: selectedCheckoutPlanName,
                         discountSaved: discountAmt,
-                        utr: 'WALLET',
+                        utr: 'WALLET_PAY',
                         usedAt: new Date().toISOString()
                     });
                 }
             }
-
-            sc.userOverrides[userKey] = {
-                ...(sc.userOverrides[userKey] || {}),
-                planName: selectedCheckoutPlanName,
-                assignedPlanId: selectedCheckoutPlanId,
-                expiresAt: new Date(Date.now() + validDays * 86400000).toISOString()
-            };
 
             markAffiliateReferralDoneOnPlanPurchase(userKey, selectedCheckoutPlanName, finalAmt);
             reconcileUserWalletState(userKey);
@@ -17391,60 +17334,27 @@ ${JSON.stringify(liveSnapshot)}`;
             renderCustomerAffiliateHubCard();
             saveAllAdminChangesLive();
             closeSubscriptionUpgradeModal();
-            showToast(`${formatWalletRs(finalAmt)} paid from Wallet! "${selectedCheckoutPlanName}" is now ACTIVE!`);
+            showToast(`${formatWalletRs(finalAmt)} paid from Referral Wallet! "${selectedCheckoutPlanName}" is now ACTIVE!`);
         }
 
-        function openUserWalletModal(defaultTab = 'add') {
+        function openUserWalletModal(defaultTab = 'withdraw') {
             ensureWalletSystemConfig();
             const neoId = ensureResolvedUniqueIdForSupport();
             if (document.getElementById('wallet-modal-user-meta')) {
                 document.getElementById('wallet-modal-user-meta').textContent = `${getPrimaryUserName()} • ID: ${neoId}`;
             }
-            const sc = ensureSubscriptionConfig();
-            if (document.getElementById('wallet-add-master-upi-text')) {
-                document.getElementById('wallet-add-master-upi-text').textContent = sc.upiId || '6393954985@upi';
-            }
-            if (document.getElementById('wallet-add-master-payee-text')) {
-                document.getElementById('wallet-add-master-payee-text').textContent = `Payee: ${sc.masterPayeeName || 'NeoKhata Official'}`;
-            }
             const wdUpiInp = document.getElementById('wallet-wd-upi-input');
             if (wdUpiInp && !wdUpiInp.value && appState.userProfile?.upi) {
                 wdUpiInp.value = appState.userProfile.upi;
             }
-            refreshWalletAddMoneyQr();
             renderUserWalletModalLists();
-            switchUserWalletTab(defaultTab);
+            switchUserWalletTab(defaultTab === 'history' ? 'history' : 'withdraw');
             document.getElementById('user-wallet-modal')?.classList.replace('hidden', 'flex');
         }
 
-        function refreshWalletAddMoneyQr() {
-            const sc = ensureSubscriptionConfig();
-            const receiverUpi = (sc.upiId || '6393954985@upi').trim();
-            const payeeName = (sc.masterPayeeName || 'NeoKhata Official').trim();
-            const rawAmt = parseFloat(document.getElementById('wallet-add-amount-input')?.value || '0');
-            const amtParam = rawAmt > 0 ? `&am=${rawAmt.toFixed(2)}` : '';
-            const qrImg = document.getElementById('wallet-add-master-qr');
-            if (qrImg) {
-                const upiUri = `upi://pay?pa=${encodeURIComponent(receiverUpi)}&pn=${encodeURIComponent(payeeName)}${amtParam}&cu=INR&tn=${encodeURIComponent('NeoKhata Wallet Top-Up')}`;
-                qrImg.src = `https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=${encodeURIComponent(upiUri)}`;
-            }
-        }
-
-        function copyMasterWalletUpi() {
-            const sc = ensureSubscriptionConfig();
-            const upi = (sc.upiId || '6393954985@upi').trim();
-            const ta = document.createElement('textarea');
-            ta.value = upi;
-            document.body.appendChild(ta);
-            ta.select();
-            document.execCommand('copy');
-            document.body.removeChild(ta);
-            showToast(`Copied Master UPI: ${upi}`);
-        }
-
-        function switchUserWalletTab(tab = 'add') {
-            const activeTab = ['add', 'withdraw', 'history'].includes(tab) ? tab : 'add';
-            ['add', 'withdraw', 'history'].forEach(t => {
+        function switchUserWalletTab(tab = 'withdraw') {
+            const activeTab = tab === 'history' ? 'history' : 'withdraw';
+            ['withdraw', 'history'].forEach(t => {
                 const panel = document.getElementById(`wallet-panel-${t}`);
                 const btn = document.getElementById(`wallet-tab-btn-${t}`);
                 const isSelected = t === activeTab;
@@ -17465,48 +17375,6 @@ ${JSON.stringify(liveSnapshot)}`;
             }
         }
 
-        function submitUserWalletAddMoneyRequest(e) {
-            e.preventDefault();
-            const ws = ensureWalletSystemConfig();
-            const userKey = getCurrentUserSubKey();
-            const neoId = ensureResolvedUniqueIdForSupport();
-            const amount = roundWalletAmount(parseFloat(document.getElementById('wallet-add-amount-input')?.value) || 0);
-            const utr = (document.getElementById('wallet-add-utr-input')?.value || '').replace(/\D/g, '').slice(0, 12);
-
-            if (amount < 10) {
-                showToast('Minimum Add-Money amount is ₹10!', 'error');
-                return;
-            }
-            if (!/^\d{12}$/.test(utr) || /^(\d)\1{11}$/.test(utr)) {
-                showToast('Please enter a valid 12-digit UTR number!', 'error');
-                return;
-            }
-            if (ws.addMoneyRequests.some(r => r.utr === utr && (r.status === 'pending' || r.status === 'done'))) {
-                showToast('This 12-digit UTR is already submitted!', 'error');
-                return;
-            }
-
-            ws.addMoneyRequests.unshift({
-                id: `wadd_${Date.now()}_${Math.random().toString(36).slice(2, 5)}`,
-                userKey,
-                userName: getPrimaryUserName(),
-                neoUserId: neoId,
-                amount,
-                utr,
-                status: 'pending',
-                credited: false,
-                createdAt: new Date().toISOString()
-            });
-
-            document.getElementById('wallet-add-amount-input').value = '';
-            document.getElementById('wallet-add-utr-input').value = '';
-            safeLocalStorageSet('khataflow_admin_config', JSON.stringify(adminConfig));
-            renderUserWalletModalLists();
-            if (typeof renderAdminWalletStudio === 'function') renderAdminWalletStudio();
-            saveAllAdminChangesLive();
-            showToast(`Add-Money request for ${formatWalletRs(amount)} submitted as Pending!`);
-        }
-
         function submitUserWalletWithdrawRequest(e) {
             e.preventDefault();
             const ws = ensureWalletSystemConfig();
@@ -17514,7 +17382,7 @@ ${JSON.stringify(liveSnapshot)}`;
             const neoId = ensureResolvedUniqueIdForSupport();
             const amount = roundWalletAmount(parseFloat(document.getElementById('wallet-wd-amount-input')?.value) || 0);
             const payoutUpi = (document.getElementById('wallet-wd-upi-input')?.value || '').trim();
-            const currentBal = getAvailableWalletBalance(userKey);
+            const currentBal = getUserWalletBalance(userKey);
             const minWd = Math.max(1, Number(ws.minWithdrawAmount) || 100);
 
             if (amount < minWd) {
@@ -17527,7 +17395,7 @@ ${JSON.stringify(liveSnapshot)}`;
                 return;
             }
             if (amount > currentBal) {
-                showToast(`Insufficient wallet balance (Available: ${formatWalletRs(currentBal)})!`, 'error');
+                showToast(`Insufficient Referral Wallet balance (Available: ${formatWalletRs(currentBal)})!`, 'error');
                 return;
             }
 
@@ -17567,42 +17435,19 @@ ${JSON.stringify(liveSnapshot)}`;
         function renderUserWalletModalLists() {
             const ws = ensureWalletSystemConfig();
             const userKey = getCurrentUserSubKey();
-            const { addedMoneyTotal, referralEarningsTotal } = reconcileUserWalletState(userKey);
-            const dispTotal = getAvailableWalletBalance(userKey);
+            const { availableBalance, referralEarningsTotal } = reconcileUserWalletState(userKey);
             updateMenuWalletBalanceBadge();
             if (document.getElementById('wallet-modal-balance-display')) {
-                document.getElementById('wallet-modal-balance-display').textContent = formatWalletRs(dispTotal);
+                document.getElementById('wallet-modal-balance-display').textContent = formatWalletRs(availableBalance);
             }
             if (document.getElementById('wallet-modal-min-wd-pill')) {
                 document.getElementById('wallet-modal-min-wd-pill').textContent = String(ws.minWithdrawAmount || 100);
-            }
-            if (document.getElementById('wallet-modal-added-money-total')) {
-                document.getElementById('wallet-modal-added-money-total').textContent = formatWalletRs(addedMoneyTotal);
             }
             if (document.getElementById('wallet-modal-referral-earned')) {
                 document.getElementById('wallet-modal-referral-earned').textContent = formatWalletRs(referralEarningsTotal);
             }
 
             const myLedger = ws.ledger.filter(l => String(l.userKey || '').toLowerCase() === userKey);
-            const addBox = document.getElementById('wallet-user-addmoney-history');
-            if (addBox) {
-                const myAdds = ws.addMoneyRequests.filter(r => String(r.userKey || '').toLowerCase() === userKey);
-                addBox.innerHTML = myAdds.length ? myAdds.map(r => {
-                    const isDone = r.status === 'done';
-                    const isRej = r.status === 'rejected';
-                    const badgeCls = isDone ? 'bg-emerald-500/15 text-emerald-700 dark:text-emerald-300' : (isRej ? 'bg-rose-500/15 text-rose-600' : 'bg-amber-500/15 text-amber-700 dark:text-amber-300');
-                    const statusLbl = isDone ? 'Done (Credited)' : (isRej ? 'Rejected' : 'Pending');
-                    return `
-                        <div class="p-2.5 rounded-xl bg-neutral-100 dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 flex items-center justify-between gap-2 text-[10.5px]">
-                            <div>
-                                <div class="font-black text-neutral-900 dark:text-white">${formatWalletRs(r.amount)} • UTR: <span class="font-mono">${r.utr}</span></div>
-                                <div class="text-[9.5px] text-neutral-400">${new Date(r.createdAt).toLocaleString('en-IN')}</div>
-                            </div>
-                            <span class="px-2 py-0.5 rounded-full font-black text-[9px] uppercase ${badgeCls}">${statusLbl}</span>
-                        </div>
-                    `;
-                }).join('') : '<div class="text-center py-3 text-[10px] text-neutral-400">No Add-Money requests submitted yet.</div>';
-            }
 
             const wdBox = document.getElementById('wallet-user-withdraw-history');
             if (wdBox) {
@@ -17643,7 +17488,7 @@ ${JSON.stringify(liveSnapshot)}`;
                             <span class="font-mono font-black flex-shrink-0 ${isCr ? 'text-emerald-600' : 'text-rose-600'}">${isCr ? '+' : '-'}${formatWalletRs(l.amount)}</span>
                         </div>
                     `;
-                }).join('') : '<div class="text-center py-4 text-[10px] text-neutral-400">No wallet transactions recorded yet.</div>';
+                }).join('') : '<div class="text-center py-4 text-[10px] text-neutral-400">No referral wallet transactions recorded yet.</div>';
             }
         }
 
@@ -17725,13 +17570,12 @@ ${JSON.stringify(liveSnapshot)}`;
                 if (prev) adjSel.value = prev;
             }
 
-            const pendingAdd = ws.addMoneyRequests.filter(r => r.status === 'pending').length;
             const pendingWd = ws.withdrawRequests.filter(r => r.status === 'pending').length;
             if (document.getElementById('adm-wallet-summary-pill')) {
-                document.getElementById('adm-wallet-summary-pill').textContent = `${pendingAdd} Add-Money Pending • ${pendingWd} Withdraw Pending`;
+                document.getElementById('adm-wallet-summary-pill').textContent = `${pendingWd} Withdraw Pending`;
             }
 
-            // Render All Users Wallet Balance & Breakdown Inspector
+            // Render All Users Referral Wallet Balance & Breakdown Inspector
             const usersBreakBox = document.getElementById('admin-wallet-users-breakdown-list');
             const usersBreakQ = (document.getElementById('adm-wallet-users-search')?.value || '').toLowerCase().trim();
             const allUsersList = getDeduplicatedAdminUsers();
@@ -17769,11 +17613,7 @@ ${JSON.stringify(liveSnapshot)}`;
                                     <button type="button" onclick="selectUserForWalletAdjustment('${encKey}')" class="px-2 py-0.5 rounded-lg bg-primary-600 hover:bg-primary-700 text-white font-black text-[9px]">Adjust ₹</button>
                                 </div>
                             </div>
-                            <div class="grid grid-cols-2 sm:grid-cols-4 gap-1.5 text-[9.5px]">
-                                <div class="p-1.5 rounded-lg bg-white dark:bg-neutral-900 border border-neutral-200/80 dark:border-neutral-800">
-                                    <span class="text-neutral-400 block">Added (Done)</span>
-                                    <strong class="font-black text-sky-600">${formatWalletRs(st.addedMoneyTotal)}</strong>
-                                </div>
+                            <div class="grid grid-cols-3 gap-1.5 text-[9.5px]">
                                 <div class="p-1.5 rounded-lg bg-white dark:bg-neutral-900 border border-neutral-200/80 dark:border-neutral-800">
                                     <span class="text-neutral-400 block">Referral (10%)</span>
                                     <strong class="font-black text-indigo-600">${formatWalletRs(st.referralEarningsTotal)}</strong>
@@ -17840,46 +17680,6 @@ ${JSON.stringify(liveSnapshot)}`;
                     `;
                 }).join('') : '<div class="text-center py-4 text-[10px] text-neutral-400">No withdraw requests yet.</div>';
             }
-
-            const addQ = (document.getElementById('adm-wallet-add-search')?.value || '').toLowerCase().trim();
-            const addBox = document.getElementById('admin-wallet-addmoney-list');
-            if (addBox) {
-                const adds = ws.addMoneyRequests.filter(r => !addQ || `${r.userName} ${r.neoUserId} ${r.utr} ${r.amount} ${r.status}`.toLowerCase().includes(addQ));
-                addBox.innerHTML = adds.length ? adds.map(r => {
-                    const isPending = r.status === 'pending';
-                    const isDone = r.status === 'done';
-                    const isRejected = r.status === 'rejected';
-                    return `
-                        <div class="p-2.5 rounded-xl ${isPending ? 'bg-primary-500/10 border-primary-400/50' : 'bg-neutral-100 dark:bg-neutral-800 border-neutral-200 dark:border-neutral-700'} border space-y-2 text-[10.5px]">
-                            <div class="flex flex-wrap items-center justify-between gap-2">
-                                <div class="min-w-0">
-                                    <div class="font-black text-neutral-900 dark:text-white flex items-center gap-1.5 flex-wrap">
-                                        <span>${r.userName || 'User'}</span>
-                                        <span class="px-1.5 py-0.5 rounded bg-primary-600/15 text-primary-600 font-mono text-[9px] font-black">${r.neoUserId || r.userKey}</span>
-                                        <span class="text-emerald-600 font-black">${formatWalletRs(r.amount)}</span>
-                                    </div>
-                                    <div class="font-mono text-[9.5px] text-neutral-500">UTR: <strong>${r.utr}</strong> • ${new Date(r.createdAt).toLocaleString('en-IN')}</div>
-                                </div>
-                                <span class="px-2 py-0.5 rounded-full font-black text-[9px] uppercase ${isDone ? 'bg-emerald-500/15 text-emerald-600' : (isPending ? 'bg-amber-500 text-white' : 'bg-rose-500/15 text-rose-600')}">${isDone ? 'Done' : r.status}</span>
-                            </div>
-
-                            <!-- Editable Amount & UTR -->
-                            <div class="grid grid-cols-12 gap-1.5 items-center pt-1 border-t border-neutral-200/70 dark:border-neutral-700/70">
-                                <input type="number" id="adm-add-edit-amt-${r.id}" min="1" step="0.01" value="${r.amount}" class="col-span-4 p-1.5 rounded-lg bg-white dark:bg-neutral-900 border font-black text-[10px]" placeholder="₹ Amount">
-                                <input type="text" id="adm-add-edit-utr-${r.id}" maxlength="12" value="${r.utr}" class="col-span-5 p-1.5 rounded-lg bg-white dark:bg-neutral-900 border font-mono font-black text-[10px]" placeholder="12-digit UTR">
-                                <button type="button" onclick="saveAdminEditedAddMoneyRequest('${r.id}')" class="col-span-3 py-1.5 px-2 rounded-lg bg-primary-600 hover:bg-primary-700 text-white font-black text-[9.5px]">Save Edit</button>
-                            </div>
-
-                            <!-- Reversible Status Actions (Approve / Reject / Reset to Pending) -->
-                            <div class="flex flex-wrap items-center gap-1.5">
-                                ${!isDone ? `<button type="button" onclick="handleAdminAddMoneyAction('${r.id}', 'done')" class="px-2.5 py-1 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white font-black text-[9.5px]">Approve (Done)</button>` : ''}
-                                ${!isRejected ? `<button type="button" onclick="handleAdminAddMoneyAction('${r.id}', 'rejected')" class="px-2.5 py-1 rounded-lg bg-rose-600 hover:bg-rose-700 text-white font-black text-[9.5px]">Reject${isDone ? ' & Reverse' : ''}</button>` : ''}
-                                ${!isPending ? `<button type="button" onclick="handleAdminAddMoneyAction('${r.id}', 'pending')" class="px-2 py-1 rounded-lg bg-amber-500/15 hover:bg-amber-500 text-amber-700 dark:text-amber-300 hover:text-white font-black text-[9.5px]">Reset Pending</button>` : ''}
-                            </div>
-                        </div>
-                    `;
-                }).join('') : '<div class="text-center py-4 text-[10px] text-neutral-400">No Add-Money requests yet.</div>';
-            }
         }
 
         function selectUserForWalletAdjustment(encKey) {
@@ -17890,33 +17690,6 @@ ${JSON.stringify(liveSnapshot)}`;
                 sel.scrollIntoView({ behavior: 'smooth', block: 'center' });
                 document.getElementById('adm-wallet-adj-amount')?.focus();
             }
-        }
-
-        function saveAdminEditedAddMoneyRequest(reqId) {
-            const ws = ensureWalletSystemConfig();
-            const req = ws.addMoneyRequests.find(r => r.id === reqId);
-            if (!req) return;
-            const newAmt = Math.max(1, roundWalletAmount(parseFloat(document.getElementById(`adm-add-edit-amt-${reqId}`)?.value) || req.amount));
-            const newUtr = (document.getElementById(`adm-add-edit-utr-${reqId}`)?.value || '').replace(/\D/g, '').slice(0, 12);
-            if (newUtr.length !== 12) {
-                showToast('UTR must be 12 digits!', 'error');
-                return;
-            }
-            req.amount = newAmt;
-            req.utr = newUtr;
-            const addEvKey = `addmoney_${req.id}`;
-            const ledRow = ws.ledger.find(l => String(l.userKey || '').toLowerCase() === String(req.userKey || '').toLowerCase() && l.refId === addEvKey);
-            if (ledRow) {
-                ledRow.amount = newAmt;
-                ledRow.title = `Wallet Add Money (+${formatWalletRs(newAmt)}) • UTR: ${newUtr}`;
-            }
-            reconcileUserWalletState(req.userKey);
-            safeLocalStorageSet('khataflow_admin_config', JSON.stringify(adminConfig));
-            renderAdminWalletStudio();
-            updateMenuWalletBalanceBadge();
-            recordAdminAuditLog('Add-Money Request Edited', req.userName || req.userKey, `Amount: ${formatWalletRs(newAmt)}, UTR: ${newUtr}`);
-            saveAllAdminChangesLive();
-            showToast(`Updated Add-Money request (${formatWalletRs(newAmt)}) & reconciled wallet!`);
         }
 
         function saveAdminEditedWithdrawRequest(reqId, reasonInputId = '') {
@@ -17940,62 +17713,6 @@ ${JSON.stringify(liveSnapshot)}`;
             recordAdminAuditLog('Withdraw Request Edited', req.userName || req.userKey, `Amount: ${formatWalletRs(newAmt)}, UPI: ${newUpi}`);
             saveAllAdminChangesLive();
             showToast(`Updated Withdraw request (${formatWalletRs(newAmt)} → ${newUpi})!`);
-        }
-
-        function handleAdminAddMoneyAction(reqId, action) {
-            const ws = ensureWalletSystemConfig();
-            const req = ws.addMoneyRequests.find(r => r.id === reqId);
-            if (!req) return;
-
-            const prevStatus = req.status;
-            const exactAmt = roundWalletAmount(req.amount);
-            const addEvKey = `addmoney_${req.id}`;
-
-            if (action === 'done') {
-                req.status = 'done';
-                req.reviewedAt = new Date().toISOString();
-                if (!req.credited || !ws.creditedEventIds[addEvKey]) {
-                    req.credited = true;
-                    ws.creditedEventIds[addEvKey] = true;
-                    appendWalletLedgerEntry(req.userKey, {
-                        type: 'credit',
-                        amount: exactAmt,
-                        title: `Wallet Add Money (+${formatWalletRs(exactAmt)}) • UTR: ${req.utr}`,
-                        refId: addEvKey
-                    });
-                }
-                reconcileUserWalletState(req.userKey);
-                recordAdminAuditLog('Wallet Add-Money Approved', req.userName || req.userKey, `Credited ${formatWalletRs(exactAmt)} (UTR: ${req.utr})`);
-                showToast(`Approved & credited exact ${formatWalletRs(exactAmt)} to ${req.userName}'s Wallet!`);
-            } else {
-                const targetStatus = action === 'pending' ? 'pending' : 'rejected';
-                req.status = targetStatus;
-                req.reviewedAt = new Date().toISOString();
-
-                // Safely reverse previous credit if request was previously approved ("done")
-                if (prevStatus === 'done' || req.credited) {
-                    req.credited = false;
-                    delete ws.creditedEventIds[addEvKey];
-                    ws.ledger = ws.ledger.filter(l => !(String(l.userKey || '').toLowerCase() === String(req.userKey || '').toLowerCase() && l.refId === addEvKey));
-                }
-                reconcileUserWalletState(req.userKey);
-                recordAdminAuditLog(
-                    targetStatus === 'pending' ? 'Wallet Add-Money Reset to Pending' : 'Wallet Add-Money Rejected',
-                    req.userName || req.userKey,
-                    `${targetStatus.toUpperCase()} • ${formatWalletRs(exactAmt)} (UTR: ${req.utr})`
-                );
-                showToast(
-                    targetStatus === 'pending'
-                        ? `Add-Money request reset to Pending & wallet reconciled!`
-                        : `Rejected Add-Money request${prevStatus === 'done' ? ' & reversed credited balance' : ''}!`,
-                    targetStatus === 'rejected' ? 'error' : 'success'
-                );
-            }
-
-            safeLocalStorageSet('khataflow_admin_config', JSON.stringify(adminConfig));
-            renderAdminWalletStudio();
-            updateMenuWalletBalanceBadge();
-            saveAllAdminChangesLive();
         }
 
         function handleAdminWithdrawAction(reqId, action, reasonInputId = '') {
@@ -18690,99 +18407,6 @@ ${JSON.stringify(liveSnapshot)}`;
             }).join('') : '<div class="text-center py-4 text-neutral-400">No users matched your affiliate search.</div>';
         }
 
-        function updateAdminUserSixDigitCode(encKey) {
-            const uKey = decodeURIComponent(encKey || '');
-            const ap = ensureAffiliateProgramConfig();
-            const newCode = (document.getElementById(`adm-aff-code-inp-${uKey}`)?.value || '').replace(/\D/g, '').slice(0, 6);
-            if (newCode.length !== 6) {
-                showToast('Referral code must be exactly 6 digits!', 'error');
-                return;
-            }
-            const conflict = Object.entries(ap.userCodes || {}).find(([k, c]) => k !== uKey && String(c) === newCode);
-            if (conflict) {
-                showToast(`Code "${newCode}" is already assigned to ${conflict[0]}!`, 'error');
-                return;
-            }
-            ap.userCodes[uKey] = newCode;
-            safeLocalStorageSet('khataflow_admin_config', JSON.stringify(adminConfig));
-            renderAdminAffiliateStudio();
-            renderCustomerAffiliateHubCard();
-            recordAdminAuditLog('6-Digit Referral Code Edited', uKey, `New Code: ${newCode}`);
-            saveAllAdminChangesLive();
-            showToast(`Updated 6-digit referral code to ${newCode}!`);
-        }
-
-        function updateAdminReferralEntryStatus(encRefId, nextStatus) {
-            const refId = decodeURIComponent(encRefId || '');
-            const ap = ensureAffiliateProgramConfig();
-            const ws = ensureWalletSystemConfig();
-            const refItem = ap.referrals.find(r => String(r.id || r.referredUserKey || '') === refId);
-            if (!refItem) return;
-
-            const commPct = Math.max(1, Number(ap.commissionPct) || 10);
-            const inpAmt = roundWalletAmount(parseFloat(document.getElementById(`adm-ref-comm-inp-${refId}`)?.value) || 0);
-            const commKey = `refcomm_${refItem.id || refItem.referredUserKey}`;
-
-            if (nextStatus === 'done') {
-                const defaultAmt = roundWalletAmount((Number(refItem.purchasedAmount) || 199) * (commPct / 100));
-                const finalComm = inpAmt > 0 ? inpAmt : defaultAmt;
-                refItem.status = 'done';
-                refItem.counted = true;
-                refItem.commissionEarned = finalComm;
-                refItem.purchasedPlanName = refItem.purchasedPlanName || 'Pro Plan (Admin Verified)';
-                refItem.completedAt = new Date().toISOString();
-                if (refItem.referrerUserKey) {
-                    ws.creditedReferralIds[commKey] = true;
-                    ws.creditedEventIds[commKey] = true;
-                    reconcileUserWalletState(refItem.referrerUserKey);
-                }
-                showToast(`Referral marked DONE & ${formatWalletRs(finalComm)} credited to referrer wallet!`);
-            } else {
-                refItem.status = nextStatus === 'rejected' ? 'rejected' : 'pending';
-                refItem.counted = false;
-                refItem.commissionEarned = 0;
-                if (refItem.referrerUserKey) {
-                    delete ws.creditedReferralIds[commKey];
-                    delete ws.creditedEventIds[commKey];
-                    ws.ledger = ws.ledger.filter(l => !(String(l.userKey || '').toLowerCase() === String(refItem.referrerUserKey || '').toLowerCase() && l.refId === commKey));
-                    reconcileUserWalletState(refItem.referrerUserKey);
-                }
-                showToast(`Referral set to ${refItem.status.toUpperCase()} & referrer wallet reconciled!`);
-            }
-
-            safeLocalStorageSet('khataflow_admin_config', JSON.stringify(adminConfig));
-            renderAdminAffiliateStudio();
-            renderAdminWalletStudio();
-            renderCustomerAffiliateHubCard();
-            updateMenuWalletBalanceBadge();
-            recordAdminAuditLog('Referral Entry Updated', refItem.referredName || refId, `Status: ${refItem.status}`);
-            saveAllAdminChangesLive();
-        }
-
-        function saveAdminReferralCommissionAmount(encRefId) {
-            const refId = decodeURIComponent(encRefId || '');
-            const ap = ensureAffiliateProgramConfig();
-            const ws = ensureWalletSystemConfig();
-            const refItem = ap.referrals.find(r => String(r.id || r.referredUserKey || '') === refId);
-            if (!refItem) return;
-            const newComm = Math.max(0, roundWalletAmount(parseFloat(document.getElementById(`adm-ref-comm-inp-${refId}`)?.value) || 0));
-            refItem.commissionEarned = newComm;
-            const commKey = `refcomm_${refItem.id || refItem.referredUserKey}`;
-            const ledRow = ws.ledger.find(l => String(l.userKey || '').toLowerCase() === String(refItem.referrerUserKey || '').toLowerCase() && l.refId === commKey);
-            if (ledRow) {
-                ledRow.amount = newComm;
-                ledRow.title = `Referral 10% Commission (+${formatWalletRs(newComm)}) — ${refItem.referredName || refItem.referredUserKey}`;
-            }
-            if (refItem.referrerUserKey) reconcileUserWalletState(refItem.referrerUserKey);
-            safeLocalStorageSet('khataflow_admin_config', JSON.stringify(adminConfig));
-            renderAdminAffiliateStudio();
-            renderAdminWalletStudio();
-            renderCustomerAffiliateHubCard();
-            updateMenuWalletBalanceBadge();
-            saveAllAdminChangesLive();
-            showToast(`Updated referral commission to ${formatWalletRs(newComm)}!`);
-        }
-
         function saveAdminAffiliateSettings() {
             const ap = ensureAffiliateProgramConfig();
             ap.enabled = !!document.getElementById('adm-aff-enabled')?.checked;
@@ -18808,6 +18432,134 @@ ${JSON.stringify(liveSnapshot)}`;
             renderCustomerAffiliateHubCard();
             saveAllAdminChangesLive();
             showToast('Customer affiliate reward updated!');
+        }
+
+        function renderAdminAffiliateStudio() {
+            const ap = ensureAffiliateProgramConfig();
+            if (document.getElementById('adm-aff-enabled')) document.getElementById('adm-aff-enabled').checked = ap.enabled !== false;
+            if (document.getElementById('adm-aff-points-per-done')) document.getElementById('adm-aff-points-per-done').value = ap.pointsPerDoneReferral || 100;
+            if (document.getElementById('adm-aff-bonus-days')) document.getElementById('adm-aff-bonus-days').value = ap.bonusProDaysPerDone || 0;
+            if (document.getElementById('adm-aff-global-note')) document.getElementById('adm-aff-global-note').value = ap.globalRewardNote || '';
+
+            const totalDone = ap.referrals.filter(r => r.status === 'done' && r.counted).length;
+            const totalPending = ap.referrals.filter(r => r.status !== 'done' || !r.counted).length;
+            if (document.getElementById('adm-aff-summary-pill')) {
+                document.getElementById('adm-aff-summary-pill').textContent = `${totalDone} Done • ${totalPending} Pending`;
+            }
+
+            const listEl = document.getElementById('admin-affiliate-users-list');
+            if (!listEl) return;
+            const q = (document.getElementById('adm-aff-search')?.value || '').toLowerCase().trim();
+            const users = getDeduplicatedAdminUsers();
+
+            const rows = users.map(u => {
+                const ph = extractCleanPhone(u.phone || '');
+                const uKey = ph.length === 10 ? `phone_${ph}` : (u.email || u.uid || '').toLowerCase();
+                if (!uKey || uKey === 'master_admin') return null;
+                const summary = getUserAffiliateSummary(uKey);
+                const matchesUser = `${u.neoUserId || ''} ${u.name || ''} ${ph} ${u.email || ''} ${summary.code}`.toLowerCase().includes(q);
+                const matchesChild = summary.allReferrals.some(r => `${r.referredName || ''} ${r.referredPhone || ''} ${r.purchasedPlanName || ''}`.toLowerCase().includes(q));
+                if (q && !matchesUser && !matchesChild) return null;
+                return { user: u, uKey, ph, summary };
+            }).filter(Boolean);
+
+            listEl.innerHTML = rows.length ? rows.map(({ user, uKey, ph, summary }) => {
+                const encKey = encodeURIComponent(uKey);
+                const rw = summary.rewardInfo || {};
+                return `
+                    <div class="p-3 rounded-2xl bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 space-y-2.5 text-[11px]">
+                        <div class="flex flex-wrap items-center justify-between gap-2">
+                            <div class="flex items-center gap-2 flex-wrap">
+                                <span class="font-black text-neutral-900 dark:text-white">${user.name || 'User'}</span>
+                                ${user.neoUserId ? `<span class="px-1.5 py-0.5 rounded bg-primary-600/15 text-primary-600 font-mono text-[9.5px] font-black">${user.neoUserId}</span>` : ''}
+                                <span class="font-mono text-[10px] text-neutral-400">${ph ? '+91 ' + ph : (user.email || uKey)}</span>
+                                <span class="px-2 py-0.5 rounded-lg bg-indigo-600 text-white font-mono font-black text-[10px]">Code: ${summary.code}</span>
+                            </div>
+                            <div class="flex items-center gap-1.5 flex-wrap text-[10px] font-black">
+                                <span class="px-2 py-0.5 rounded-full bg-neutral-100 dark:bg-neutral-800">Total: ${summary.totalReferred}</span>
+                                <span class="px-2 py-0.5 rounded-full bg-emerald-500/15 text-emerald-600">Done: ${summary.doneCount}</span>
+                                <span class="px-2 py-0.5 rounded-full bg-amber-500/15 text-amber-600">Pending: ${summary.pendingCount}</span>
+                                <span class="px-2 py-0.5 rounded-full bg-indigo-500/15 text-indigo-600">${summary.totalPoints} Pts</span>
+                            </div>
+                        </div>
+
+                        <!-- Admin Controls: Adjust Points, Set Reward Amount, Team Announcement & Status -->
+                        <div class="grid grid-cols-12 gap-1.5 items-center text-[10px] pt-1 border-t border-neutral-200/70 dark:border-neutral-800">
+                            <div class="col-span-3">
+                                <label class="block text-[9px] text-neutral-400 font-bold">Bonus Pts (+/-)</label>
+                                <input type="number" value="${rw.bonusPointsAdjustment || 0}" onchange="updateAdminUserAffiliateReward('${encKey}', 'bonusPointsAdjustment', this.value)" class="w-full p-1.5 rounded-lg bg-neutral-100 dark:bg-neutral-800 border font-black">
+                            </div>
+                            <div class="col-span-3">
+                                <label class="block text-[9px] text-neutral-400 font-bold">Reward Amount / Prize</label>
+                                <input type="text" value="${String(rw.rewardAmountText || '').replace(/"/g, '&quot;')}" onchange="updateAdminUserAffiliateReward('${encKey}', 'rewardAmountText', this.value)" placeholder="e.g. ₹500 Cash" class="w-full p-1.5 rounded-lg bg-neutral-100 dark:bg-neutral-800 border font-black text-emerald-600">
+                            </div>
+                            <div class="col-span-4">
+                                <label class="block text-[9px] text-neutral-400 font-bold">Team Announcement Note</label>
+                                <input type="text" value="${String(rw.announcement || '').replace(/"/g, '&quot;')}" onchange="updateAdminUserAffiliateReward('${encKey}', 'announcement', this.value)" placeholder="e.g. Top Referrer Bonus!" class="w-full p-1.5 rounded-lg bg-neutral-100 dark:bg-neutral-800 border font-semibold">
+                            </div>
+                            <div class="col-span-2">
+                                <label class="block text-[9px] text-neutral-400 font-bold">Reward Status</label>
+                                <select onchange="updateAdminUserAffiliateReward('${encKey}', 'rewardStatus', this.value)" class="w-full p-1.5 rounded-lg bg-neutral-100 dark:bg-neutral-800 border font-black">
+                                    <option value="Pending" ${(rw.rewardStatus || 'Pending') === 'Pending' ? 'selected' : ''}>Pending</option>
+                                    <option value="Announced" ${rw.rewardStatus === 'Announced' ? 'selected' : ''}>Announced</option>
+                                    <option value="Paid" ${rw.rewardStatus === 'Paid' ? 'selected' : ''}>Paid</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        ${summary.allReferrals.length ? `
+                            <div class="p-2 rounded-xl bg-neutral-50 dark:bg-neutral-800/70 border space-y-1 text-[10px]">
+                                <div class="font-black text-neutral-500 uppercase text-[9px]">Referred Users Tracking (${summary.allReferrals.length})</div>
+                                ${summary.allReferrals.map(r => {
+                                    const isDone = r.status === 'done' && r.counted;
+                                    return `
+                                        <div class="flex flex-wrap items-center justify-between gap-1.5 py-1 border-b last:border-b-0 border-neutral-200/60 dark:border-neutral-700/60">
+                                            <div>
+                                                <strong>${r.referredName || 'User'}</strong> <span class="font-mono text-neutral-400">${r.referredPhone ? '+91 ' + r.referredPhone : ''}</span>
+                                                <span class="ml-1 ${isDone ? 'text-emerald-600 font-bold' : 'text-amber-600 font-bold'}">
+                                                    • ${isDone ? `Plan: ${r.purchasedPlanName || 'Pro Plan'} (+${r.pointsAwarded} Pts)` : 'No Plan Yet (Pending)'}
+                                                </span>
+                                            </div>
+                                            <span class="px-2 py-0.5 rounded-full font-black text-[9px] uppercase ${isDone ? 'bg-emerald-500/15 text-emerald-600' : 'bg-amber-500/15 text-amber-600'}">${isDone ? 'Done' : 'Pending'}</span>
+                                        </div>
+                                    `;
+                                }).join('')}
+                            </div>
+                        ` : ''}
+                    </div>
+                `;
+            }).join('') : '<div class="text-center py-4 text-neutral-400">No users matched your affiliate search.</div>';
+        }
+
+        function saveAdminAffiliateSettings() {
+            const ap = ensureAffiliateProgramConfig();
+            ap.enabled = !!document.getElementById('adm-aff-enabled')?.checked;
+            ap.pointsPerDoneReferral = Math.max(1, parseInt(document.getElementById('adm-aff-points-per-done')?.value, 10) || 100);
+            ap.bonusProDaysPerDone = Math.max(0, parseInt(document.getElementById('adm-aff-bonus-days')?.value, 10) || 0);
+            ap.globalRewardNote = (document.getElementById('adm-aff-global-note')?.value || '').trim();
+            safeLocalStorageSet('khataflow_admin_config', JSON.stringify(adminConfig));
+            renderAdminAffiliateStudio();
+            renderCustomerAffiliateHubCard();
+            saveAllAdminChangesLive();
+            showToast('Affiliate & 6-Digit Referral rules saved!');
+        }
+
+        function updateAdminUserAffiliateReward(encKey, field, val) {
+            const uKey = decodeURIComponent(encKey || '');
+            const ap = ensureAffiliateProgramConfig();
+            if (!ap.userRewards[uKey]) {
+                ap.userRewards[uKey] = { bonusPointsAdjustment: 0, rewardAmountText: '', announcement: '', rewardStatus: 'Pending' };
+            }
+            if (field === 'bonusPointsAdjustment') {
+                ap.userRewards[uKey].bonusPointsAdjustment = parseInt(val, 10) || 0;
+            } else {
+                ap.userRewards[uKey][field] = String(val || '').trim();
+            }
+            safeLocalStorageSet('khataflow_admin_config', JSON.stringify(adminConfig));
+            renderAdminAffiliateStudio();
+            renderCustomerAffiliateHubCard();
+            saveAllAdminChangesLive();
+            showToast('Customer affiliate reward & points updated!');
         }
 
         // ================= TOUCH SWIPE SUPPORT & INITIALIZATION =================
