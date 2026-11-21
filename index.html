@@ -17347,9 +17347,9 @@ ${JSON.stringify(liveSnapshot)}`;
             if (wdUpiInp && !wdUpiInp.value && appState.userProfile?.upi) {
                 wdUpiInp.value = appState.userProfile.upi;
             }
-            renderUserWalletModalLists();
             switchUserWalletTab(defaultTab === 'history' ? 'history' : 'withdraw');
             document.getElementById('user-wallet-modal')?.classList.replace('hidden', 'flex');
+            renderUserWalletModalLists();
         }
 
         function switchUserWalletTab(tab = 'withdraw') {
@@ -17435,23 +17435,64 @@ ${JSON.stringify(liveSnapshot)}`;
         function renderUserWalletModalLists() {
             const ws = ensureWalletSystemConfig();
             const userKey = getCurrentUserSubKey();
-            const { availableBalance, referralEarningsTotal } = reconcileUserWalletState(userKey);
-            updateMenuWalletBalanceBadge();
-            if (document.getElementById('wallet-modal-balance-display')) {
-                document.getElementById('wallet-modal-balance-display').textContent = formatWalletRs(availableBalance);
+            const reconciled = reconcileUserWalletState(userKey);
+            const myWds = ws.withdrawRequests.filter(r => String(r.userKey || '').toLowerCase() === userKey);
+
+            // Compute single authoritative Referral Earnings (10%) & Available Referral Wallet Balance
+            const earned10 = roundWalletAmount(
+                Number(reconciled.referralEarningsTotal) ||
+                Number(ws.referralTotals?.[userKey]) ||
+                Number(appState.totalReferralEarnings10Pct) ||
+                0
+            );
+            const withdrawnOrHeld = roundWalletAmount(
+                myWds
+                    .filter(w => w.status === 'pending' || w.status === 'paid' || w.status === 'approved')
+                    .reduce((sum, w) => sum + roundWalletAmount(w.amount), 0)
+            );
+            const refunded = roundWalletAmount(
+                myWds
+                    .filter(w => w.status === 'rejected' && w.refunded)
+                    .reduce((sum, w) => sum + roundWalletAmount(w.amount), 0)
+            );
+            const availRefBal = Math.max(
+                0,
+                Math.round(((earned10 - withdrawnOrHeld) + Number.EPSILON) * 100) / 100
+            );
+
+            // Persist synchronized balance to wallet config, appState, localStorage, and Firebase
+            const prevBal = roundWalletAmount(ws.balances[userKey]);
+            ws.balances[userKey] = availRefBal;
+            ws.referralTotals[userKey] = earned10;
+            appState.availableReferralBalance = availRefBal;
+            appState.totalReferralEarnings10Pct = earned10;
+            safeLocalStorageSet('khataflow_admin_config', JSON.stringify(adminConfig));
+            safeLocalStorageSet('khataflow_state_v3', JSON.stringify(appState));
+            if (prevBal !== availRefBal && typeof window.pushStateToCloud === 'function') {
+                scheduleCloudPush(false);
+            }
+
+            // Update both display elements & menu pill with exact unified values (never overwritten to ₹0)
+            const topBalEl = document.getElementById('wallet-modal-balance-display');
+            if (topBalEl) {
+                topBalEl.textContent = formatWalletRs(availRefBal);
+            }
+            const refEarnedEl = document.getElementById('wallet-modal-referral-earned');
+            if (refEarnedEl) {
+                refEarnedEl.textContent = formatWalletRs(earned10);
+            }
+            const menuPillEl = document.getElementById('menu-wallet-balance-pill');
+            if (menuPillEl) {
+                menuPillEl.textContent = formatWalletRs(availRefBal);
             }
             if (document.getElementById('wallet-modal-min-wd-pill')) {
                 document.getElementById('wallet-modal-min-wd-pill').textContent = String(ws.minWithdrawAmount || 100);
-            }
-            if (document.getElementById('wallet-modal-referral-earned')) {
-                document.getElementById('wallet-modal-referral-earned').textContent = formatWalletRs(referralEarningsTotal);
             }
 
             const myLedger = ws.ledger.filter(l => String(l.userKey || '').toLowerCase() === userKey);
 
             const wdBox = document.getElementById('wallet-user-withdraw-history');
             if (wdBox) {
-                const myWds = ws.withdrawRequests.filter(r => String(r.userKey || '').toLowerCase() === userKey);
                 wdBox.innerHTML = myWds.length ? myWds.map(r => {
                     const isPaid = r.status === 'paid' || r.status === 'approved';
                     const isRej = r.status === 'rejected';
